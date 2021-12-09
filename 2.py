@@ -1,16 +1,29 @@
-import math
+import turtle
+ 
+turtlePen = turtle.Turtle()
+window = turtle.Screen()
+ 
+window.bgcolor("black")
 
-sum = 0
-x = math.pi / 4
-for n in range(1, 21):
-    sum += n * x / math.sin(n * x)
-print(sum, ":sum of function\n")
+def polygon(n, size=80):
+    if n > 2:
+        angle = 360 / n
+        for n in range(0, n):
+            turtlePen.color(colors[n % 5])
+            turtlePen.left(angle)
+            turtlePen.forward(size)
 
-# 2
-for n in range(10, 0, -1):
-    n /= n**n
-    print("Function (N => 0):", n * x / math.sin(n * x))
-print()
-for n in range(1, 10):
-    n **= n ** n
-    print("Function (N => ∞):", n * x / math.sin(n * x))
+
+turtlePen.speed(100)
+
+colors = ['orange', 'cyan', 'blue', 'green', 'red']
+
+size = 40
+
+for i in range(0, 60):
+    turtlePen.color(colors[i % 5])
+    polygon(4, size)
+    turtlePen.left(5)
+    size = size + 3
+
+window.mainloop()
